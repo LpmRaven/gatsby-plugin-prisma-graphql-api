@@ -1,0 +1,22 @@
+{
+  "name": "graphql-yoga-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "start": "serverless offline",
+    "deploy": "serverless deploy",
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "author": "Liam Raven",
+  "license": "ISC",
+  "dependencies": {
+    "graphql-yoga": "^1.16.9",
+    "prisma-binding": "^2.2.12"
+  },
+  "devDependencies": {
+    "serverless": "^1.35.1",
+    "serverless-dotenv-plugin": "^2.0.1",
+    "serverless-offline": "^3.31.3"
+  }
+}

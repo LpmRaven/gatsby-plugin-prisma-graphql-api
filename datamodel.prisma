@@ -1,0 +1,27 @@
+enum Region {
+  UnitedKingdom,
+  UnitedStates,
+  Deutschland,
+  France,
+  Japan,
+  Canada,
+  China,
+  Italia,
+  Espana,
+  India,
+  Brazil,
+  Mexico,
+  Australia
+}
+
+type Price {
+  id: ID! @unique
+  productId: String! @unique
+  supplierProductId: String!
+  supplier: String!
+  supplierUrl: String!
+  productUrl: String! @unique
+  currentPrice: Json!
+  historicPrices: Json
+  region: Region!
+}

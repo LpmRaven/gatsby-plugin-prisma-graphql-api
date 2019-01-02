@@ -1,0 +1,10 @@
+# import * from './generated/prisma.graphql'
+
+type Query {
+    prices(where: PriceWhereInput, orderBy: PriceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Price]!
+    price(where: PriceWhereUniqueInput!): Price
+}
+
+type Mutation {
+    hi: String
+}
