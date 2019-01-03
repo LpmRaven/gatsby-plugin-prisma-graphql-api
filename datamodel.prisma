@@ -16,7 +16,7 @@ enum Region {
 
 type Price {
   id: ID! @unique
-  productId: String! @unique
+  productId: String!
   supplierProductId: String!
   supplier: String!
   supplierUrl: String!
