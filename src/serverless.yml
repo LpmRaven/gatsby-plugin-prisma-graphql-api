@@ -10,8 +10,8 @@ provider:
   stage: dev
   region: eu-west-1
   environment:
-    PRISMA_ENDPOINT: ${env:PRISMA_ENDPOINT}
-    PRISMA_SECRET: ${env:PRISMA_ENDPOINT}
+    PRISMA_ENDPOINT: ${env:PRISMA_ENDPOINT_EU}
+    PRISMA_SECRET: ${env:PRISMA_SECRET}
 
 functions:
   graphql:
