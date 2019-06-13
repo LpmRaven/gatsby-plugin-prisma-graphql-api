@@ -1,0 +1,37 @@
+{
+    "name": "gatsby-plugin-prisma-graphql-api",
+    "version": "1.0.0",
+    "author": "Liam Raven <liamraven@gmail.com> (https://liamraven.com)",
+    "keywords": [
+        "gatsby",
+        "graphql",
+        "prisma",
+        "api",
+        "gatsby-plugin",
+        "gatsby-plugin",
+        "gatsby-plugin-prisma",
+        "gatsby-plugin-graphql",
+        "gatsby-plugin-prisma-graphql-api",
+        "gatsby-plugin-graphql",
+        "gatsby-plugin-graphql-api",
+        "gatsby-plugin-prisma"
+    ],
+    "scripts": {
+        "deploy": "prisma deploy",
+        "start": "serverless offline"
+    },
+    "license": "MIT",
+    "peerDependencies": {
+        "gatsby": "^2.0.53"
+    },
+    "devDependencies": {
+        "graphql-playground-middleware-express": "^1.7.12"
+    },
+    "dependencies": {
+        "apollo-server-express": "^2.6.3",
+        "express": "^4.17.1",
+        "express-graphql": "^0.8.0",
+        "graphql": "^14.3.1",
+        "serverless-http": "^2.0.2"
+    }
+}
