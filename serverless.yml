@@ -1,6 +1,7 @@
 service: graphql-yoga-lambda
 
 plugins:
+  - serverless-dotenv-plugin
   - serverless-offline
 
 provider:
@@ -8,17 +9,20 @@ provider:
   runtime: nodejs8.10
   stage: dev
   region: eu-west-1
+  environment:
+    PRISMA_ENDPOINT: ${env:PRISMA_ENDPOINT}
+    PRISMA_SECRET: ${env:PRISMA_SECRET}
 
 functions:
   graphql:
-    handler: index.handler
+    handler: index.server
     events:
       - http:
           path: graphql
           method: post
           cors: true
   playground:
-    handler: index.handler
+    handler: index.playground
     events:
       - http:
           path: playground

@@ -1,38 +1,33 @@
 
-//const { GraphQLServerLambda } = require('graphql-yoga');
-
-const express = require('express');
-const serverless = require('serverless-http');
-const expressPlayground = require('graphql-playground-middleware-express').default;
-const { ApolloServer } = require('apollo-server-express');
-const graphqlHTTP = require(`express-graphql`)
+const { GraphQLServerLambda } = require('graphql-yoga');
+const { Prisma } = require('prisma-binding');
+const { printSchema } = require('graphql');
+const fs = require('fs');
 
 const { store } = require('gatsby/dist/redux');
+const schema = store.getState().schema;
 
-// const lambda = new GraphQLServerLambda({
-//     schema,
-//     resolverValidationOptions: {
-//         requireResolversForResolveType: false,
-//     },
-//     context: req => ({ ...req, db })
-// });
+const fileData = printSchema(schema);
 
-// exports.server = lambda.graphqlHandler;
-// exports.playground = lambda.playgroundHandler;
+fs.writeFile('prisma.graphql', fileData, error => {
+    // handle error
+    console.log('schema did not write');
 
-const schema = store.getState().schema
+});
 
-const app = express()
-app.use(
-    `/`,
-    graphqlHTTP({
-        schema,
-        graphiql: true,
-    })
-)
+const db = new Prisma({
+    typeDefs: './prisma.graphql',
+    endpoint: process.env.PRISMA_ENDPOINT,
+    secret: process.env.PRISMA_SECRET,
+    debug: false,
+});
 
-app.get('/playground', expressPlayground({ endpoint: '/graphql' }))
+const lambda = new GraphQLServerLambda({
+    schema,
+    resolverValidationOptions: {
+        requireResolversForResolveType: false,
+    },
+    context: req => ({ ...req, db })
+});
 
-const handler = serverless(app);
-
-module.exports = { handler };
+module.exports = { server: lambda.graphqlHandler, playground: lambda.playgroundHandler };

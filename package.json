@@ -4,14 +4,15 @@
     "author": "Liam Raven <liamraven@gmail.com> (https://liamraven.com)",
     "keywords": [
         "gatsby",
+        "deploy",
         "graphql",
         "prisma",
         "api",
         "gatsby-plugin",
-        "gatsby-plugin",
-        "gatsby-plugin-prisma",
-        "gatsby-plugin-graphql",
-        "gatsby-plugin-prisma-graphql-api",
+        "gatsby-plugin-deploy",
+        "gatsby-plugin-deploy-prisma",
+        "gatsby-plugin-deploy-graphql",
+        "gatsby-plugin-deploy-prisma-graphql-api",
         "gatsby-plugin-graphql",
         "gatsby-plugin-graphql-api",
         "gatsby-plugin-prisma"
@@ -24,14 +25,10 @@
     "peerDependencies": {
         "gatsby": "^2.0.53"
     },
-    "devDependencies": {
-        "graphql-playground-middleware-express": "^1.7.12"
-    },
     "dependencies": {
-        "apollo-server-express": "^2.6.3",
-        "express": "^4.17.1",
-        "express-graphql": "^0.8.0",
-        "graphql": "^14.3.1",
-        "serverless-http": "^2.0.2"
+        "graphql-yoga": "^1.17.4",
+        "prisma-binding": "^2.3.12",
+        "serverless-dotenv-plugin": "^2.1.1",
+        "serverless-offline": "^5.3.3"
     }
 }
