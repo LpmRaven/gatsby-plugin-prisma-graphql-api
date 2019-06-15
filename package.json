@@ -18,6 +18,9 @@
         "gatsby-plugin-prisma"
     ],
     "scripts": {
+        "build": "babel src --out-dir . --ignore **/__tests__",
+        "watch": "babel -w src --out-dir . --ignore **/__tests__",
+        "prepare": "cross-env NODE_ENV=production yarn run build",
         "deploy": "prisma deploy",
         "start": "serverless offline"
     },
@@ -30,5 +33,11 @@
         "prisma-binding": "^2.3.12",
         "serverless-dotenv-plugin": "^2.1.1",
         "serverless-offline": "^5.3.3"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.4.4",
+        "@babel/core": "^7.4.5",
+        "babel-preset-gatsby-package": "^0.1.4",
+        "cross-env": "^5.2.0"
     }
 }
