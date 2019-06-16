@@ -1,22 +1,23 @@
+const { GraphQLServerLambda } = require('graphql-yoga');
+const { Prisma } = require('prisma-binding');
+const { printSchema } = require('gatsby/graphql');
 
-const { handler } = require(`./index.js`);
+exports.onPostBootstrap = ({ store, reporter, pluginOptions }) => {
+    const schema = store.getState().schema;
+    const fileData = printSchema(schema);
 
-//exports.onPostBootstrap = handler;
+    const db = new Prisma({
+        typeDefs: fileData,
+        endpoint: pluginOptions.prismaEndpoint,
+        secret: pluginOptions.prismaSecret,
+        debug: false,
+    });
 
-
-const { GraphQLSchema } = require(`graphql`)
-
-exports.onPostBootstrap = ({ store, reporter }) => {
-
-    const schema = store.getState();
-    console.log('schema:', schema.schema);
-
-
-    reporter.info(
-        schema instanceof GraphQLSchema
-            ? `Hooray, a GraphQLSchema!`
-            : `Boo, where's the Schema?`
-    )
+    return new GraphQLServerLambda({
+        schema,
+        resolverValidationOptions: {
+            requireResolversForResolveType: false,
+        },
+        context: req => ({ ...req, db })
+    });
 }
-
-console.log("Testing my plugin");
